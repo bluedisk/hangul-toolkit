@@ -12,4 +12,4 @@ base fork from https://github.com/rhobot/Hangulpy
 
 ----
 
-MIT License
+Apache 2.0 License
