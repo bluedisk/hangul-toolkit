@@ -3,7 +3,6 @@
 from __future__ import unicode_literals
 from __future__ import division
 
-from . import checker
 from .const import CHO, JOONG, JONG, FIRST_HANGUL_UNICODE, NUM_CHO, NUM_JOONG, NUM_JONG
 from .exception import NotHangulException
 
@@ -46,10 +45,22 @@ def decompose_index(code):
 def decompose(hangul_letter):
     """This function returns letters by decomposing the specified Hangul letter."""
 
+    from . import checker
+
     if len(hangul_letter) < 1:
         raise NotLetterException('')
     elif not checker.is_hangul(hangul_letter):
         raise NotHangulException('')
+
+    if hangul_letter in CHO:
+        return (hangul_letter, '', '')
+
+    if hangul_letter in JOONG:
+        return ('', hangul_letter, '')
+
+    if hangul_letter in JONG:
+        return ('', '', hangul_letter)
+
 
     code = hangul_index(hangul_letter)
     cho, joong, jong = decompose_index(code)
