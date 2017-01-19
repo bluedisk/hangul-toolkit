@@ -3,7 +3,6 @@
 from __future__ import unicode_literals
 from __future__ import division
 
-from . import checker
 from . import letter as lt
 from .exception import NotHangulException
 from .const import CHO, JOONG, JONG, JAMO, FIRST_HANGUL_UNICODE, LAST_HANGUL_UNICODE, NUM_JONG
