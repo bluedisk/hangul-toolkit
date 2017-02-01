@@ -6,7 +6,7 @@ base code forked from https://github.com/rhobot/Hangulpy
 
 ## INSTALL
 ```
-pip install hangul-tools
+pip install hgtk
 ```
 
 ## Samples
