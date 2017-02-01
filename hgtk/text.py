@@ -9,15 +9,15 @@ from . import letter
 
 # 코딩 효율과 가독성을 위해서 index대신 unicode사용 by bluedisk
 JONG_COMP = {
-    u'ㄱ':{
+    u'ㄱ': {
         u'ㄱ': u'ㄲ',
         u'ㅅ': u'ㄳ',
     },
-    u'ㄴ':{
+    u'ㄴ': {
         u'ㅈ': u'ㄵ',
         u'ㅎ': u'ㄶ',
     },
-    u'ㄹ':{
+    u'ㄹ': {
         u'ㄱ': u'ㄺ',
         u'ㅁ': u'ㄻ',
         u'ㅂ': u'ㄼ',
@@ -30,9 +30,11 @@ JONG_COMP = {
 
 DEFAULT_COMPOSE_CODE = u'ᴥ'
 
+
 ################################################################################
 # Hangul Automata functions by bluedisk@gmail.com
 ################################################################################
+
 
 def decompose(text, latin_filter=True, compose_code=DEFAULT_COMPOSE_CODE):
     result=u""
@@ -55,68 +57,76 @@ def decompose(text, latin_filter=True, compose_code=DEFAULT_COMPOSE_CODE):
 
     return result
 
+
+STATUS_CHO = 0
+STATUS_JOONG = 1
+STATUS_JONG1 = 2
+STATUS_JONG2 = 3
+
+
 def compose(text, compose_code=DEFAULT_COMPOSE_CODE):
     res_text = u""
-    status="CHO"
+
+    status = STATUS_CHO
 
     for c in text:
 
-        if status == "CHO":
+        if status == STATUS_CHO:
 
             if c in CHO:
                 chosung = c
-                status="JOONG"
+                status = STATUS_JOONG
             else:
                 if c != compose_code:
 
                     res_text = res_text + c
 
-        elif status == "JOONG":
+        elif status == STATUS_JOONG:
 
             if c != compose_code and c in JOONG:
                 joongsung = c
-                status="JONG1"
+                status = STATUS_JONG1
             else:
                 res_text = res_text + chosung
 
                 if c in CHO:
                     chosung = c
-                    status="JOONG"
+                    status = STATUS_JOONG
                 else:
                     if c != compose_code:
 
                         res_text = res_text + c
-                    status="CHO"
+                    status = STATUS_CHO
 
-        elif status == "JONG1":
+        elif status == STATUS_JONG1:
 
             if c != compose_code and c in JONG:
                 jongsung = c
 
                 if c in JONG_COMP:
-                    status="JONG2"
+                    status = STATUS_JONG2
                 else:
                     res_text = res_text + letter.compose(chosung, joongsung, jongsung)
-                    status="CHO"
+                    status = STATUS_CHO
 
             else:
                 res_text = res_text + letter.compose(chosung, joongsung)
 
                 if c in CHO:
                     chosung = c
-                    status="JOONG"
+                    status = STATUS_JOONG
                 else:
                     if c != compose_code:
 
                         res_text = res_text + c
 
-                    status="CHO"
+                    status = STATUS_CHO
 
-        elif status == "JONG2":
+        elif status == STATUS_JONG2:
 
             if c != compose_code and c in JONG_COMP[jongsung]:
                 jongsung = JONG_COMP[jongsung][c]
-                c = compose_code # 종성 재 출력 방지
+                c = compose_code  # 종성 재 출력 방지
 
             res_text = res_text + letter.compose(chosung, joongsung, jongsung)
 
@@ -124,7 +134,6 @@ def compose(text, compose_code=DEFAULT_COMPOSE_CODE):
 
                 res_text = res_text + c
 
-            status="CHO"
-
+            status = STATUS_CHO
 
     return res_text

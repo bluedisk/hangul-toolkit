@@ -4,13 +4,14 @@ from __future__ import unicode_literals
 from __future__ import division
 
 from .const import CHO, JOONG, JONG, FIRST_HANGUL_UNICODE, NUM_CHO, NUM_JOONG, NUM_JONG
-from .exception import NotHangulException
+from .exception import NotHangulException, NotLetterException
 
 from six import unichr
 
 ################################################################################
 # Decomposition & Combination
 ################################################################################
+
 
 def compose(chosung, joongsung, jongsung=u''):
     """This function returns a Hangul letter by composing the specified chosung, joongsung, and jongsung.
@@ -25,12 +26,14 @@ def compose(chosung, joongsung, jongsung=u''):
         joongsung_index = JOONG.index(joongsung)
         jongsung_index = JONG.index(jongsung)
     except Exception:
-        raise NotHangulException('No valid Hangul character can be generated using given combination of chosung, joongsung, and jongsung.')
+        raise NotHangulException('No valid Hangul character index')
 
     return unichr(0xAC00 + chosung_index * NUM_JOONG * NUM_JONG + joongsung_index * NUM_JONG + jongsung_index)
 
+
 def hangul_index(letter):
     return ord(letter) - FIRST_HANGUL_UNICODE
+
 
 def decompose_index(code):
     jong = int(code % NUM_JONG)
@@ -39,7 +42,7 @@ def decompose_index(code):
     code /= NUM_JOONG
     cho = int(code)
 
-    return (cho, joong, jong)
+    return cho, joong, jong
 
 
 def decompose(hangul_letter):
@@ -53,14 +56,13 @@ def decompose(hangul_letter):
         raise NotHangulException('')
 
     if hangul_letter in CHO:
-        return (hangul_letter, '', '')
+        return hangul_letter, '', ''
 
     if hangul_letter in JOONG:
-        return ('', hangul_letter, '')
+        return '', hangul_letter, ''
 
     if hangul_letter in JONG:
-        return ('', '', hangul_letter)
-
+        return '', '', hangul_letter
 
     code = hangul_index(hangul_letter)
     cho, joong, jong = decompose_index(code)
@@ -69,8 +71,8 @@ def decompose(hangul_letter):
         cho = 0
 
     try:
-        return (CHO[cho], JOONG[joong], JONG[jong])
+        return CHO[cho], JOONG[joong], JONG[jong]
     except:
-        print ("%d / %d  / %d"%(cho, joong, jong))
-        print ("%s / %s " %( (JOONG[joong].encode("utf8"), JONG[jong].encode('utf8'))))
+        print("%d / %d  / %d"%(cho, joong, jong))
+        print("%s / %s " %( JOONG[joong].encode("utf8"), JONG[jong].encode('utf8')))
         raise Exception()

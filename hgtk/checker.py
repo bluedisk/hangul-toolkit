@@ -41,9 +41,10 @@ def is_jamo(letter):
 def is_hanja(phrase):
     for unicode_value in map(lambda letter:ord(letter), phrase):
         if ((unicode_value < FIRST_HANJA_UNICODE or unicode_value > LAST_HANJA_UNICODE) and
-            (unicode_value < FIRST_HANJA_EXT_A_UNICODE or unicode_value > LAST_HANJA_EXT_A_UNICODE)):
+                (unicode_value < FIRST_HANJA_EXT_A_UNICODE or unicode_value > LAST_HANJA_EXT_A_UNICODE)):
             return False
     return True
+
 
 def is_latin1(phrase):
     for unicode_value in map(lambda letter:ord(letter), phrase):
@@ -62,21 +63,23 @@ def has_jongsung(letter):
     code = lt.hangul_index(letter)
     return code % NUM_JONG > 0
 
+
 def has_batchim(letter):
     """This method is the same as has_jongsung()"""
     return has_jongsung(letter)
 
-def has_approximant(letter):
-    """Approximant makes complex vowels, such as ones starting with y or w.
-    In Korean there is a unique approximant euㅡ making uiㅢ, but ㅢ does not make many irregularities."""
-    if len(letter) != 1:
-        raise Exception('The target string must be one letter.')
-    if not is_hangul(letter):
-        raise NotHangulException('The target string must be Hangul')
-
-    jaso = lt.decompose(letter)
-    diphthong = (u'ㅑ',u'ㅒ',u'ㅕ',u'ㅖ',u'ㅘ',u'ㅙ',u'ㅛ',u'ㅝ',u'ㅞ',u'ㅠ')
-    # excluded 'ㅢ' because y- and w-based complex vowels are irregular.
-    # vowels with umlauts (ㅐ, ㅔ, ㅚ, ㅟ) are not considered complex vowels.
-    return jaso[1] in diphthong
-
+# DEPRECATED !
+# def has_approximant(letter):
+#     """Approximant makes complex vowels, such as ones starting with y or w.
+#     In Korean there is a unique approximant euㅡ making uiㅢ, but ㅢ does not make many irregularities."""
+#     if len(letter) != 1:
+#         raise Exception('The target string must be one letter.')
+#     if not is_hangul(letter):
+#         raise NotHangulException('The target string must be Hangul')
+#
+#     jaso = lt.decompose(letter)
+#     diphthong = (u'ㅑ', u'ㅒ', u'ㅕ', u'ㅖ', u'ㅘ', u'ㅙ', u'ㅛ', u'ㅝ', u'ㅞ', u'ㅠ')
+#     # excluded 'ㅢ' because y- and w-based complex vowels are irregular.
+#     # vowels with umlauts (ㅐ, ㅔ, ㅚ, ㅟ) are not considered complex vowels.
+#     return jaso[1] in diphthong
+#
