@@ -26,7 +26,7 @@ RYUL_YUL = {'not':  u'률', 'has': u'율', 'except': u'ㄴ'}
 ################################################################################
 
 
-def attach(word, josa=Josa.EUN_NEUN):
+def attach(word, josa=EUN_NEUN):
     """add josa at the end of this word"""
     last_letter = word.strip()[-1]
     _, _, letter_jong = letter.decompose(last_letter)
