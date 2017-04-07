@@ -40,7 +40,6 @@ def decompose(text, latin_filter=True, compose_code=DEFAULT_COMPOSE_CODE):
     result=u""
 
     for c in list(text):
-        print(c)
         if checker.is_hangul(c):
 
             if checker.is_jamo(c):
