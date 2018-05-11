@@ -3,10 +3,12 @@
 from __future__ import unicode_literals
 from __future__ import division
 
-from .const import CHO, JOONG, JONG, FIRST_HANGUL_UNICODE, NUM_CHO, NUM_JOONG, NUM_JONG
+from .const import CHO, JOONG, JONG, FIRST_HANGUL_UNICODE, NUM_CHO, NUM_JOONG, NUM_JONG, ENG_KOR_SUBSTITUENT
 from .exception import NotHangulException, NotLetterException
+from . import checker
 
 from six import unichr
+import string
 
 ################################################################################
 # Decomposition & Combination
@@ -76,3 +78,6 @@ def decompose(hangul_letter):
         print("%d / %d  / %d"%(cho, joong, jong))
         print("%s / %s " %( JOONG[joong].encode("utf8"), JONG[jong].encode('utf8')))
         raise Exception()
+
+def get_substituent_of(letter):
+    return ENG_KOR_SUBSTITUENT.get(letter.upper(), '')
