@@ -5,7 +5,6 @@ from __future__ import division
 
 from .const import CHO, JOONG, JONG, FIRST_HANGUL_UNICODE, NUM_CHO, NUM_JOONG, NUM_JONG, ENG_KOR_SUBSTITUENT
 from .exception import NotHangulException, NotLetterException
-from . import checker
 
 from six import unichr
 import string
