@@ -28,6 +28,15 @@ pip install hgtk
 >>> hgtk.text.decompose('학교종이 땡땡땡! hello world 1234567890 ㅋㅋ!')
 'ㅎㅏㄱᴥㄱㅛᴥㅈㅗㅇᴥㅇㅣᴥ ㄸㅐㅇᴥㄸㅐㅇᴥㄸㅐㅇᴥ! hello world 1234567890 ㅋᴥㅋᴥ!'
 ```
+
+기본 조합 완료 기호는 ᴥ이고, 아래와 같이 compose_code 옵션으로 변경 가능합니다.
+```python
+>>> hgtk.text.decompose('학교종이 땡땡땡! hello world 1234567890 ㅋㅋ!', compose_code='/')
+'ㅎㅏㄱ/ㄱㅛ/ㅈㅗㅇ/ㅇㅣ/ㄸㅐㅇ/ㄸㅐㅇ/ㄸㅐㅇ/! hello world 1234567890 ㅋ/ㅋ/!'
+```
+기본 조합기호의 의미는 곰돌이 입니다. 👇  
+<img src='https://user-images.githubusercontent.com/3307964/136328328-a5dea3b0-4731-48a5-881a-fae9b2c83dba.png' width=300/>
+
 #### Compose text (Automata)
 ```python
 >>> hgtk.text.compose('ㅎㅏㄱᴥㄱㅛᴥㅈㅗㅇᴥㅇㅣᴥ ㄸㅐㅇᴥㄸㅐㅇᴥㄸㅐㅇᴥ! hello world 1234567890 ㅋᴥㅋᴥ!')
