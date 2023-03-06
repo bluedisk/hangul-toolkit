@@ -32,7 +32,8 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            pip install -e .
+            pip install -r requirements.txt
+            pip install six
             pip install coverage
             pip install pytest
       - save_cache:
@@ -84,7 +85,7 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  tseting: # This is the name of the workflow, feel free to change it to better match your workflow.
+  testing: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - test-36
