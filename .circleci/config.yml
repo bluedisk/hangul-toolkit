@@ -88,6 +88,8 @@ workflows:
   testing: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
+      - test-26
+      - test-27
       - test-36
       - test-37
       - test-38
