@@ -49,28 +49,37 @@ jobs:
   test-37:
     <<: *test-template
     docker:
-      - image: circleci/python:3.7
+      - image: cimg/python:3.7
 
   test-38:
     <<: *test-template
     docker:
-      - image: circleci/python:3.8
+      - image: cimg/python:3.8
 
   test-39:
     <<: *test-template
     docker:
-      - image: circleci/python:3.9
+      - image: cimg/python:3.9
 
   test-310:
     <<: *test-template
     docker:
-      - image: circleci/python:3.10
+      - image: cimg/python:3.10
 
   test-311:
     <<: *test-template
     docker:
-      - image: circleci/python:3.11
-    
+      - image: cimg/python:3.11
+
+  test-26:
+    <<: *test-template
+    docker:
+      - image: cimg/python:2.6
+
+  test-27:
+    <<: *test-template
+    docker:
+      - image: cimg/python:2.7
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
