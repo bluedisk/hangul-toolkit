@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
 from __future__ import division
+from __future__ import unicode_literals
 
 import hgtk
 
@@ -12,4 +12,3 @@ def test_compose():
 
 def test_decompose():
     assert hgtk.letter.decompose('감') == ('ㄱ', 'ㅏ', 'ㅁ')
-

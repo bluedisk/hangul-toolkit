@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
 from __future__ import division
+from __future__ import unicode_literals
 
 import hgtk
 
@@ -75,4 +75,3 @@ def test_ryul_yul_2():
 
 def test_ryul_yul_3():
     assert hgtk.josa.attach('반환', hgtk.josa.RYUL_YUL) == '반환율'
-

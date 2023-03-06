@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
 from __future__ import division
+from __future__ import unicode_literals
 
-from .const import CHO, JOONG, JONG
 from . import checker
 from . import letter
+from .const import CHO, JOONG, JONG
 
 # 코딩 효율과 가독성을 위해서 index대신 unicode사용 by bluedisk
 JONG_COMP = {
@@ -43,7 +43,7 @@ DEFAULT_COMPOSE_CODE = u'ᴥ'
 
 
 def decompose(text, latin_filter=True, compose_code=DEFAULT_COMPOSE_CODE):
-    result=u""
+    result = u""
 
     for c in list(text):
         if checker.is_hangul(c):
@@ -54,7 +54,7 @@ def decompose(text, latin_filter=True, compose_code=DEFAULT_COMPOSE_CODE):
                 result = result + "".join(letter.decompose(c)) + compose_code
 
         else:
-            if latin_filter:    # 한글 외엔 Latin1 범위까지만 포함 (한글+영어)
+            if latin_filter:  # 한글 외엔 Latin1 범위까지만 포함 (한글+영어)
                 if checker.is_latin1(c):
                     result = result + c
             else:
@@ -83,7 +83,6 @@ def compose(text, compose_code=DEFAULT_COMPOSE_CODE):
                 status = STATUS_JOONG
             else:
                 if c != compose_code:
-
                     res_text = res_text + c
 
         elif status == STATUS_JOONG:
@@ -99,7 +98,6 @@ def compose(text, compose_code=DEFAULT_COMPOSE_CODE):
                     status = STATUS_JOONG
                 else:
                     if c != compose_code:
-
                         res_text = res_text + c
                     status = STATUS_CHO
 
@@ -122,7 +120,6 @@ def compose(text, compose_code=DEFAULT_COMPOSE_CODE):
                     status = STATUS_JOONG
                 else:
                     if c != compose_code:
-
                         res_text = res_text + c
 
                     status = STATUS_CHO
@@ -136,7 +133,6 @@ def compose(text, compose_code=DEFAULT_COMPOSE_CODE):
             res_text = res_text + letter.compose(chosung, joongsung, jongsung)
 
             if c != compose_code:
-
                 res_text = res_text + c
 
             status = STATUS_CHO

@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
 from __future__ import division
+from __future__ import unicode_literals
 
-from .const import CHO, JOONG, JONG
-from . import checker
 from . import letter
 from .exception import NotHangulException
 
@@ -12,17 +10,18 @@ from .exception import NotHangulException
 # Josa Type Parameters
 ################################################################################
 
-EUN_NEUN = {'not': u'은', 'has': '는', 'except':  None}
-I_GA = {'not': u'이', 'has': '가', 'except':  None}
-EUL_REUL = {'not': u'을', 'has': '를', 'except':  None}
-GWA_WA = {'not': u'과', 'has': '와', 'except':  None}
-IDA_DA = {'not': u'이다', 'has': '다', 'except':  None}
+EUN_NEUN = {'not': u'은', 'has': '는', 'except': None}
+I_GA = {'not': u'이', 'has': '가', 'except': None}
+EUL_REUL = {'not': u'을', 'has': '를', 'except': None}
+GWA_WA = {'not': u'과', 'has': '와', 'except': None}
+IDA_DA = {'not': u'이다', 'has': '다', 'except': None}
 
-EURO_RO = {'not':  u'으로', 'has': u'로', 'except': u'ㄹ'}
-RYUL_YUL = {'not':  u'률', 'has': u'율', 'except': u'ㄴ'}
+EURO_RO = {'not': u'으로', 'has': u'로', 'except': u'ㄹ'}
+RYUL_YUL = {'not': u'률', 'has': u'율', 'except': u'ㄴ'}
 
 JOSA_TYPES = (EUN_NEUN, I_GA, EUL_REUL, GWA_WA, IDA_DA, EURO_RO, RYUL_YUL)
-JOSAS = dict(sum([[[josa['not'], josa], [josa['has'], josa]] for josa in JOSA_TYPES ], []))
+JOSAS = dict(sum([[[josa['not'], josa], [josa['has'], josa]] for josa in JOSA_TYPES], []))
+
 
 ################################################################################
 # Josa functions
@@ -30,6 +29,7 @@ JOSAS = dict(sum([[[josa['not'], josa], [josa['has'], josa]] for josa in JOSA_TY
 
 def get_josa_type(word):
     return JOSAS.get(word, None)
+
 
 def attach(word, josa=EUN_NEUN):
     """add josa at the end of this word"""

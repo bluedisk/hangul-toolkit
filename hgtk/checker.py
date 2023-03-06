@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
 from __future__ import division
+from __future__ import unicode_literals
 
 from . import letter as lt
+from .const import JAMO, FIRST_HANGUL_UNICODE, LAST_HANGUL_UNICODE, NUM_JONG
 from .exception import NotHangulException
-from .const import CHO, JOONG, JONG, JAMO, FIRST_HANGUL_UNICODE, LAST_HANGUL_UNICODE, NUM_JONG
-
-import re
 
 # 한자와 라틴 문자 범위 by bluedisk
 FIRST_HANJA_UNICODE = 0x4E00
@@ -16,8 +14,10 @@ LAST_HANJA_UNICODE = 0x9FFF
 FIRST_HANJA_EXT_A_UNICODE = 0x3400
 LAST_HANJA_EXT_A_UNICODE = 0x4DBF
 
-FIRST_LATIN1_UNICODE = 0x0000 # NUL
-LAST_LATIN1_UNICODE = 0x00FF # 'ÿ'
+FIRST_LATIN1_UNICODE = 0x0000  # NUL
+LAST_LATIN1_UNICODE = 0x00FF  # 'ÿ'
+
+
 # EXT B~E 는 무시
 
 ################################################################################
@@ -25,7 +25,7 @@ LAST_LATIN1_UNICODE = 0x00FF # 'ÿ'
 ################################################################################
 
 
-def is_hangul(phrase): # TODO: need tuning!!
+def is_hangul(phrase):  # TODO: need tuning!!
     for letter in phrase:
         code = ord(letter)
         if (code < FIRST_HANGUL_UNICODE or code > LAST_HANGUL_UNICODE) and not is_jamo(letter):
@@ -39,7 +39,7 @@ def is_jamo(letter):
 
 
 def is_hanja(phrase):
-    for unicode_value in map(lambda letter:ord(letter), phrase):
+    for unicode_value in map(lambda letter: ord(letter), phrase):
         if ((unicode_value < FIRST_HANJA_UNICODE or unicode_value > LAST_HANJA_UNICODE) and
                 (unicode_value < FIRST_HANJA_EXT_A_UNICODE or unicode_value > LAST_HANJA_EXT_A_UNICODE)):
             return False
@@ -47,7 +47,7 @@ def is_hanja(phrase):
 
 
 def is_latin1(phrase):
-    for unicode_value in map(lambda letter:ord(letter), phrase):
+    for unicode_value in map(lambda letter: ord(letter), phrase):
         if unicode_value < FIRST_LATIN1_UNICODE or unicode_value > LAST_LATIN1_UNICODE:
             return False
     return True

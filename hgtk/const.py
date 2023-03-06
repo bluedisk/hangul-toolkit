@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
 from __future__ import division
+from __future__ import unicode_literals
 
 ################################################################################
 # Hangul Unicode Variables
@@ -34,4 +34,4 @@ NUM_JONG = 28
 FIRST_HANGUL_UNICODE = 0xAC00  # '가'
 LAST_HANGUL_UNICODE = 0xD7A3  # '힣'
 #                      AB C DEFGHIJK L M N OPQR ST UVWXYZ
-ENG_KOR_SUBSTITUENT = { 'B': 'ㅂ', 'C':'ㄱ', 'K':'ㄱ', 'L':'ㄹ', 'M':'ㅁ', 'N':'ㄴ', 'R':'ㄹ', 'T':'ㅅ'}
+ENG_KOR_SUBSTITUENT = {'B': 'ㅂ', 'C': 'ㄱ', 'K': 'ㄱ', 'L': 'ㄹ', 'M': 'ㅁ', 'N': 'ㄴ', 'R': 'ㄹ', 'T': 'ㅅ'}

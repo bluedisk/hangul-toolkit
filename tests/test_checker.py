@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import unicode_literals
 from __future__ import division
+from __future__ import unicode_literals
 
 import hgtk
 
@@ -41,13 +41,9 @@ def test_has_batchim_1():
 def test_has_batchim_2():
     assert not hgtk.checker.has_batchim('하')
 
-
 # DEPRECATED! - not a general function
 # def test_has_approximant_1():
 #     assert hgtk.checker.has_approximant('롹')
 
 # def test_has_approximant_2():
 #     assert hgtk.checker.has_approximant('락') == False
-
-
-
