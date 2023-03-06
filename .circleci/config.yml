@@ -72,15 +72,15 @@ jobs:
     docker:
       - image: cimg/python:3.11
 
-  test-26:
-    <<: *test-template
-    docker:
-      - image: cimg/python:2.6
-
   test-27:
     <<: *test-template
     docker:
       - image: cimg/python:2.7
+
+  test-pypy:
+    <<: *test-template
+    docker:
+      - image: pypy:latest
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -88,7 +88,6 @@ workflows:
   testing: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - test-26
       - test-27
       - test-36
       - test-37
@@ -96,3 +95,4 @@ workflows:
       - test-39
       - test-310
       - test-311
+      - test-pypy
