@@ -1,3 +1,5 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/bluedisk/hangul-toolkit/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/bluedisk/hangul-toolkit/tree/main)
+
 Simple Toolkit for Hangul
 =========================
 base code forked from https://github.com/rhobot/Hangulpy
@@ -159,16 +161,15 @@ False
 
 
 ##Tested in
-- python 2.6
 - python 2.7
-- python 3.3
-- python 3.4
-- python 3.5
-- python 3.6
-- python nightly build
 
-- PyPy 2.2.5.
-- Pypy 3 2.4.
+- python 3.6
+- python 3.7
+- python 3.8
+- python 3.9
+- python 3.10
+- python 3.11
+
 - PyPy 5.3.1
 
 
