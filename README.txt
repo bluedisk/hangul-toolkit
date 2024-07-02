@@ -19,16 +19,15 @@ Simple Toolkit for Hangul
 
 
 Tested in
-- python 2.6
 - python 2.7
-- python 3.3
-- python 3.4
-- python 3.5
-- python 3.6
-- python nightly build
+- python 3.7
+- python 3.8
+- python 3.9
+- python 3.10
+- python 3.11
+- python 3.12
 
-- PyPy 2.2.5.
-- Pypy 3 2.4.
-- PyPy 5.3.1
+- PyPy 2
+- Pypy 3
 
 Apache 2.0 License
