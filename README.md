@@ -160,17 +160,18 @@ False
 * NotWordException
 
 
-##Tested in
+## Tested in
 - python 2.7
 
-- python 3.6
 - python 3.7
 - python 3.8
 - python 3.9
 - python 3.10
 - python 3.11
+- python 3.12
 
-- PyPy 5.3.1
+- PyPy 2.x
+- PyPy 3.x
 
 
 ----
