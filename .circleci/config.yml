@@ -14,9 +14,9 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  test-36: &test-template
+  test-37: &test-template
     docker:
-      - image: cimg/python:3.6
+      - image: cimg/python:3.7
     # Checkout the code as the first step. This is a dedicated CircleCI step.
     # The python orb's install-packages step will install the dependencies from a Pipfile via Pipenv by default.
     # Here we're making sure we use just use the system-wide pip. By default it uses the project root's requirements.txt.
@@ -43,13 +43,9 @@ jobs:
           name: Run tests
           command: |
             coverage run -m pytest tests
+            coverage html -d test-reports
       - store_artifacts:
           path: test-reports
-
-  test-37:
-    <<: *test-template
-    docker:
-      - image: cimg/python:3.7
 
   test-38:
     <<: *test-template
@@ -70,16 +66,26 @@ jobs:
     <<: *test-template
     docker:
       - image: cimg/python:3.11
+      
+  test-312:
+    <<: *test-template
+    docker:
+      - image: cimg/python:3.12
 
   test-27:
     <<: *test-template
     docker:
       - image: cimg/python:2.7
 
-  test-pypy:
+  test-pypy2:
     <<: *test-template
     docker:
-      - image: pypy:latest
+      - image: pypy:2
+  
+  test-pypy3:
+    <<: *test-template
+    docker:
+      - image: pypy:3
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -88,10 +94,11 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - test-27
-      - test-36
       - test-37
       - test-38
       - test-39
       - test-310
       - test-311
-      - test-pypy
+      - test-312
+      - test-pypy2
+      - test-pypy3
