@@ -15,8 +15,12 @@ from setuptools import setup, find_packages
 here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.txt'), encoding='utf-8') as f:
-    long_description = f.read()
+try:
+   import pypandoc
+   long_description = pypandoc.convert_file('README.md', 'rst')
+except(IOError, ImportError):
+   print("fall back to md")
+   long_description = open('README.md').read()
 
 setup(
     name='hgtk',
@@ -27,6 +31,8 @@ setup(
     version='0.2.1',
 
     description='Toolkit for Hangul composing, decomposing and etc...',
+    
+    long_description_content_type="text/markdown",
     long_description=long_description,
 
     # The project's main homepage.
